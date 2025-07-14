@@ -1,24 +1,151 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin-top: 50px;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-ul {
-  list-style: none;
+/* Reset and Base Styles */
+* {
+  margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-li {
-  background: #f0f0f0;
-  margin: 8px auto;
-  padding: 10px;
-  width: 70%;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #e3f2fd);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 40px 20px;
+  color: #333;
+}
+
+/* Container */
+.app-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#searchInput {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  max-width: 400px;
+}
+
+#loadBtn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+#loadBtn:hover {
+  background-color: #0056b3;
+}
+
+/* Add Form */
+.add-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.add-form input,
+.add-form button {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.add-form input {
+  border: 1px solid #ccc;
+}
+
+.add-form button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.add-form button:hover {
+  background-color: #1e7e34;
+}
+
+/* Holiday Cards */
+.holiday-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.holiday-card {
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.holiday-card:hover {
+  background-color: #e9f5ff;
+  transform: translateY(-2px);
+}
+
+.holiday-date {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.holiday-name {
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+/* Delete button */
+.delete-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: #dc3545;
+  color: white;
+  border: none;
   border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #b02a37;
 }
