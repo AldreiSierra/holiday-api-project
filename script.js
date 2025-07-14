@@ -10,28 +10,28 @@ const countrySelect = document.getElementById("countrySelect");
 let holidays = [];
 let selectedCountry = countrySelect.value;
 
-// Utility to show notification
+
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   setTimeout(() => toast.classList.remove("show"), 2500);
 }
 
-// Save to localStorage per country
+
 function saveToLocal() {
   const data = JSON.parse(localStorage.getItem("holidays")) || {};
   data[selectedCountry] = holidays;
   localStorage.setItem("holidays", JSON.stringify(data));
 }
 
-// Load from localStorage per country
+
 function loadFromLocal() {
   const data = JSON.parse(localStorage.getItem("holidays")) || {};
   holidays = data[selectedCountry] || [];
   renderHolidays(holidays);
 }
 
-// Render holidays to the UI
+
 function renderHolidays(list) {
   holidayList.innerHTML = "";
 
@@ -56,7 +56,7 @@ function renderHolidays(list) {
   });
 }
 
-// Load holidays from API
+
 btn.addEventListener("click", () => {
   btn.disabled = true;
   btn.textContent = "Loading...";
@@ -67,7 +67,7 @@ btn.addEventListener("click", () => {
       return res.json();
     })
     .then(data => {
-      // Filter out duplicates
+      
       holidays = data;
       saveToLocal();
       renderHolidays(holidays);
@@ -83,7 +83,7 @@ btn.addEventListener("click", () => {
     });
 });
 
-// Filter search results
+
 searchInput.addEventListener("input", () => {
   const keyword = searchInput.value.toLowerCase();
   const filtered = holidays.filter(h =>
@@ -92,7 +92,7 @@ searchInput.addEventListener("input", () => {
   renderHolidays(filtered);
 });
 
-// Add custom holiday
+
 addForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const date = newDate.value;
@@ -109,7 +109,7 @@ addForm.addEventListener("submit", (e) => {
   showToast("🎉 Holiday added!");
 });
 
-// Delete specific holiday
+
 function deleteHoliday(index) {
   const deleted = holidays.splice(index, 1);
   saveToLocal();
@@ -117,12 +117,12 @@ function deleteHoliday(index) {
   showToast(`🗑️ Deleted: ${deleted[0].localName}`);
 }
 
-// Country change → clear & load saved holidays (if any)
+
 countrySelect.addEventListener("change", () => {
   selectedCountry = countrySelect.value;
   loadFromLocal();
   showToast(`🌍 Switched to ${selectedCountry}`);
 });
 
-// Load default country on start
+
 loadFromLocal();
