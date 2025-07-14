@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PH Holidays 2025</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌍 Holidays 2025</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🇵🇭 Philippine Holidays 2025</h1>
-  <button id="loadBtn">Load Holidays</button>
-  <ul id="holidayList"></ul>
+  <main class="app-container">
+    <h1>🌍 Public Holidays 2025</h1>
+
+    <section class="controls">
+      <select id="countrySelect">
+        <option value="PH" selected>🇵🇭 Philippines</option>
+        <option value="US">🇺🇸 USA</option>
+        <option value="CN">🇨🇳 China</option>
+        <option value="JP">🇯🇵 Japan</option>
+        <option value="GB">🇬🇧 United Kingdom</option>
+        <option value="DE">🇩🇪 Germany</option>
+        <option value="FR">🇫🇷 France</option>
+        <option value="IN">🇮🇳 India</option>
+        <option value="BR">🇧🇷 Brazil</option>
+      </select>
+
+      <input type="text" id="searchInput" placeholder="🔍 Search holidays..." />
+      <button id="loadBtn">📅 Load Holidays</button>
+    </section>
+
+    <form id="addForm" class="add-form">
+      <input type="date" id="newDate" required />
+      <input type="text" id="newName" placeholder="Holiday name" required />
+      <button type="submit">➕ Add Holiday</button>
+    </form>
+
+    <div id="toast" class="toast"></div>
+    <section id="holidayList" class="holiday-list"></section>
+  </main>
+
   <script src="script.js"></script>
 </body>
 </html>
