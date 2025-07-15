@@ -13,13 +13,11 @@ const countrySelect = document.getElementById("countrySelect");
 let holidays = [];
 let selectedCountry = countrySelect.value;
 
-
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   setTimeout(() => toast.classList.remove("show"), 2500);
 }
-
 
 function saveToLocal() {
   const data = JSON.parse(localStorage.getItem("holidays")) || {};
@@ -27,13 +25,11 @@ function saveToLocal() {
   localStorage.setItem("holidays", JSON.stringify(data));
 }
 
-
 function loadFromLocal() {
   const data = JSON.parse(localStorage.getItem("holidays")) || {};
   holidays = data[selectedCountry] || [];
   renderHolidays(holidays);
 }
-
 
 function renderHolidays(list) {
   holidayList.innerHTML = "";
@@ -59,7 +55,6 @@ function renderHolidays(list) {
   });
 }
 
-
 btn.addEventListener("click", () => {
   btn.disabled = true;
   btn.textContent = "Loading...";
@@ -70,7 +65,6 @@ btn.addEventListener("click", () => {
       return res.json();
     })
     .then(data => {
-      
       holidays = data;
       saveToLocal();
       renderHolidays(holidays);
@@ -86,7 +80,6 @@ btn.addEventListener("click", () => {
     });
 });
 
-
 searchInput.addEventListener("input", () => {
   const keyword = searchInput.value.toLowerCase();
   const filtered = holidays.filter(h =>
@@ -94,7 +87,6 @@ searchInput.addEventListener("input", () => {
   );
   renderHolidays(filtered);
 });
-
 
 addForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -112,14 +104,19 @@ addForm.addEventListener("submit", (e) => {
   showToast("🎉 Holiday added!");
 });
 
-
 function deleteHoliday(index) {
-  const deleted = holidays.splice(index, 1);
-  saveToLocal();
-  renderHolidays(holidays);
-  showToast(`🗑️ Deleted: ${deleted[0].localName}`);
-}
+  const holiday = holidays[index];
+  const confirmed = confirm(`🗑️ Are you sure you want to delete "${holiday.localName}" on ${holiday.date}?`);
 
+  if (confirmed) {
+    const deleted = holidays.splice(index, 1);
+    saveToLocal();
+    renderHolidays(holidays);
+    showToast(`🗑️ Deleted: ${deleted[0].localName}`);
+  } else {
+    showToast("❌ Deletion cancelled.");
+  }
+}
 
 countrySelect.addEventListener("change", () => {
   selectedCountry = countrySelect.value;
@@ -127,5 +124,5 @@ countrySelect.addEventListener("change", () => {
   showToast(`🌍 Switched to ${selectedCountry}`);
 });
 
-
 loadFromLocal();
+
