@@ -1,3 +1,6 @@
+//Great job on the code! It's clean, organized, and easy to follow.
+//The main features are working well,but adding input validation and improving the error messages would make the app even better.
+
 const btn = document.getElementById("loadBtn");
 const holidayList = document.getElementById("holidayList");
 const searchInput = document.getElementById("searchInput");
